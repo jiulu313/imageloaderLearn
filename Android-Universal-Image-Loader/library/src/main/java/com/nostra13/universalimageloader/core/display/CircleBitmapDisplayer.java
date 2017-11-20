@@ -77,6 +77,8 @@ public class CircleBitmapDisplayer implements BitmapDisplayer {
 		protected final RectF mBitmapRect;
 		protected final BitmapShader bitmapShader;
 		protected final Paint paint;
+
+		//锚边相关
 		protected final Paint strokePaint;
 		protected final float strokeWidth;
 		protected float strokeRadius;

@@ -264,6 +264,7 @@ public class ImageLoader {
 
 		listener.onLoadingStarted(uri, imageAware.getWrappedView());
 
+		//尝试从内存缓存中获取图片
 		Bitmap bmp = configuration.memoryCache.get(memoryCacheKey);
 		if (bmp != null && !bmp.isRecycled()) {
 			L.d(LOG_LOAD_IMAGE_FROM_MEMORY_CACHE, memoryCacheKey);
@@ -291,8 +292,10 @@ public class ImageLoader {
 
 			ImageLoadingInfo imageLoadingInfo = new ImageLoadingInfo(uri, imageAware, targetSize, memoryCacheKey,
 					options, listener, progressListener, engine.getLockForUri(uri));
+
 			LoadAndDisplayImageTask displayTask = new LoadAndDisplayImageTask(engine, imageLoadingInfo,
 					defineHandler(options));
+
 			if (options.isSyncLoading()) {
 				displayTask.run();
 			} else {
